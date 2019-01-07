@@ -19,16 +19,89 @@ public class OI {
   //// joystick.
   // You create one by telling it which joystick it's on and which button
   // number it is.
+
+  //Controller Constants 
   public static final int KXboxArms = 0;
   public static final int KLogitechDrive = 1;
 
-  public static final double KDeadZoneAxis = 0.2; 
-
+  //Controllers
   public Joystick xbox;
   public Joystick logitech;
+
+  //DeadZone
+  public static final double KDeadZoneAxis = 0.2; 
+
+  //Logitech Button Constants 
+  public static final int KButton1 = 1;
+	public static final int KButton2 = 2;
+	public static final int KButton3 = 3;
+	public static final int KButton4 = 4;
+	public static final int KButton5 = 5;
+	public static final int KButton6 = 6;
+	public static final int KButton7 = 7;
+	public static final int KButton8 = 8;
+
+  //Logitech Buttons
+  public JoystickButton btn1;
+  public JoystickButton btn2; 
+  public JoystickButton btn3;
+  public JoystickButton btn4;
+  public JoystickButton btn5; 
+  public JoystickButton btn6; 
+  public JoystickButton btn7; 
+  public JoystickButton btn8; 
+
+  //Xbox Button Constants 
+  public static final int KButtonA = 1;
+	public static final int KButtonB = 2;
+	public static final int KButtonX = 3;
+	public static final int KButtonY = 4;
+	public static final int KLeftBumper = 5;
+	public static final int KRightBumper = 6;
+	public static final int KStartButton = 8;
+	public static final int KLeftTrigger = 9;
+  public static final int KRightTrigger = 10;
+  
+  //Xbox Buttons 
+  public JoystickButton btnA; 
+  public JoystickButton btnB;
+  public JoystickButton btnX;
+  public JoystickButton btnY;
+  public JoystickButton leftBumper;
+  public JoystickButton rightBumper;
+  public JoystickButton startButton; 
+  public JoystickButton leftTrigger; 
+  public JoystickButton rightTigger; 
+
+
   public OI(){
+    //Controllers 
     logitech = new Joystick(KLogitechDrive);
     xbox = new Joystick(KXboxArms);
+
+    //Logitech Buttons
+		btn1 = new JoystickButton(logitech, KButton1);
+		btn2 = new JoystickButton(logitech, KButton2);
+		btn3 = new JoystickButton(logitech, KButton3);
+		btn4 = new JoystickButton(logitech, KButton4);
+		btn5 = new JoystickButton(logitech, KButton5);
+		btn6 = new JoystickButton(logitech, KButton6);
+		btn7 = new JoystickButton(logitech, KButton7);
+		btn8 = new JoystickButton(logitech, KButton8);
+
+		//XBox Buttons
+		btnA = new JoystickButton(xBox, KButtonA);
+		btnB = new JoystickButton(xBox, KButtonB);
+		btnX = new JoystickButton(xBox, KButtonX);
+		btnY = new JoystickButton(xBox, KButtonY);
+		btnLB = new JoystickButton(xBox, KLeftBumper);
+		btnRB = new JoystickButton(xBox, KRightBumper);
+		btnStrt = new JoystickButton(xBox, KStartButton);
+		btnLT = new JoystickButton(xBox, KLeftTrigger);
+    btnRT = new JoystickButton(xBox, KRightTrigger);
+    
+    //Button Assigned Commands 
+    btn5.whenPressed(new ShiftBase());
   }
 
   public double getRightAxis() {

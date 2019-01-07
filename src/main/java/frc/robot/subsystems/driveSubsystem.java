@@ -31,12 +31,18 @@ public class driveSubsystem extends Subsystem {
   public static final int KDriveLeftRearTalon = 6; 
   public static final double KDeadZone = 0.2; 
 
+  public static final int KShifterSolenoid1 = 1;
+  public static final int KShifterSolenoid2 = 2; 
+
   private TalonSRX driveRightTop;
   private TalonSRX driveLeftTop;  
   private TalonSRX driveRightFront; 
   private TalonSRX driveLeftFront;
   private TalonSRX driveRightRear; 
   private TalonSRX driveLeftRear;
+
+  private DoubleSolenoid shifterSolenoid1; 
+  private DoubleSolenoid shifterSolenoid2; 
 
   public driveSubsystem()
   {
@@ -47,10 +53,15 @@ public class driveSubsystem extends Subsystem {
     driveRightRear = new TalonSRX(KDriveRightRearTalon);
     driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
+    shifterSolenoid1 = new DoubleSolenoid(KShifterSolenoid1);
+    shifterSolenoid2 = new DoubleSolenoid(KShifterSolenoid2);
+
     driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());
     driveRightRear.set(ControlMode.Follower, driveRightFront.getDeviceID());
     driveLeftTop.set(ControlMode.Follower, driveLeftFront.getDeviceID());
     driveLeftRear.set(ControlMode.Follower, driveLeftFront.getDeviceID());
+
+    shifterSolenoid2.set(ControlMode.Follower, shifterSolenoid1.getDeviceID());
   }
 
   @Override
@@ -72,5 +83,21 @@ public class driveSubsystem extends Subsystem {
     else {
       driveLeftFront.set(ControlMode.PercentOutput, 0);
     }
+  
+	public void highShiftBase() {
+		shifterSolenoid1.set(DoubleSolenoid.Value.kReverse);
+    }
+  
+	public void lowShiftBase() {
+		shifterSolenoid1.set(DoubleSolenoid.Value.kForward);
+    }
+
+	public void toggleShift() {
+		if (shifterSolenoid.get() == DoubleSolenoid.Value.kForward) {
+			highShiftBase();
+		}
+		else {
+			lowShiftBase();
+		}
   }
 }
