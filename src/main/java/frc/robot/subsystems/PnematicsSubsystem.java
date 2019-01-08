@@ -8,8 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-import frc.robot.commands.StopArm;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 //import static org.junit.Assume.assumeNoException;
 
@@ -19,26 +19,18 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class armSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class PnematicsSubsystem extends Subsystem {
+  private Compressor pCompressor;
+	private AnalogInput pressureSensor;
 
-  public static final int KArmTalon = 10; 
+	public void PneumaticsSubsystem()
+	{
+		pCompressor = new Compressor(0);
+		pressureSensor = new AnalogInput(0);
+	}
 
-  private TalonSRX armTalon;
-
-  public armSubsystem()
-  {
-    armTalon = new TalonSRX(KArmTalon);
-  }
-
-  @Override
-  public void initDefaultCommand() {
-    //default command for a subsystem here.
-   setDefaultCommand(new StopArm());
-  }
-
-  public void move(int speed) {
-    armTalon.set(ControlMode.PercentOutput, speed);
-  }
+	public void initDefaultCommand()
+	{
+		pCompressor.start();
+	}
 }

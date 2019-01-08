@@ -19,7 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class driveSubsystem extends Subsystem {
+public class DriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -43,7 +43,7 @@ public class driveSubsystem extends Subsystem {
 
   private DoubleSolenoid shifterSolenoid;
 
-  public driveSubsystem()
+  public DriveSubsystem()
   {
     driveRightTop = new TalonSRX(KDriveRightTopTalon);
     driveLeftTop = new TalonSRX(KDriveLeftTopTalon);
