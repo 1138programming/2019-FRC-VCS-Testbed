@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.commands.driveWithJoysticks;
+import frc.robot.commands.DriveWithJoysticks;
 
 //import static org.junit.Assume.assumeNoException;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -41,8 +41,7 @@ public class driveSubsystem extends Subsystem {
   private TalonSRX driveRightRear; 
   private TalonSRX driveLeftRear;
 
-  private DoubleSolenoid shifterSolenoid1; 
-  private DoubleSolenoid shifterSolenoid2; 
+  private DoubleSolenoid shifterSolenoid;
 
   public driveSubsystem()
   {
@@ -65,7 +64,7 @@ public class driveSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     //default command for a subsystem here.
-   setDefaultCommand(new driveWithJoysticks());
+   setDefaultCommand(new DriveWithJoysticks());
   }
 
   public void tankDrive(double rightSpeed, double leftSpeed) {

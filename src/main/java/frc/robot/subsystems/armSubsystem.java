@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.commands.stopArm;
+import frc.robot.commands.StopArm;
 
 //import static org.junit.Assume.assumeNoException;
 
@@ -35,7 +35,7 @@ public class armSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     //default command for a subsystem here.
-   setDefaultCommand(new stopArm());
+   setDefaultCommand(new StopArm());
   }
 
   public void move(int speed) {

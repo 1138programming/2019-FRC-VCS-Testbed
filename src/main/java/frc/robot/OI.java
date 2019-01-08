@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
+import frc.robot.commands.ShiftDrive;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -26,7 +28,7 @@ public class OI {
   public static final int KLogitechDrive = 1;
 
   //Controllers
-  // public Joystick xbox;
+  public Joystick xbox;
   // public Joystick logitech;
 
   //DeadZone
@@ -106,7 +108,7 @@ public class OI {
     btnRT = new JoystickButton(xBox, KRightTrigger);
     
     //Button Assigned Commands 
-    btn5.whenPressed(new ToggleShift());
+    btn5.whenPressed(new ShiftDrive());
   }
 
   public double getRightAxis() {

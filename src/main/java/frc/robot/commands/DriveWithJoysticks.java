@@ -13,8 +13,8 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class driveWithJoysticks extends Command {
-  public driveWithJoysticks() {
+public class DriveWithJoysticks extends Command {
+  public DriveWithJoysticks() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.DRIVE_SUBSYSTEM);
   }

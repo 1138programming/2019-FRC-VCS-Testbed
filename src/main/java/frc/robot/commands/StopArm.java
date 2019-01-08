@@ -13,8 +13,8 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class stopArm extends Command {
-  public stopArm() {
+public class StopArm extends Command {
+  public StopArm() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.ARM_SUBSYSTEM);
   }
