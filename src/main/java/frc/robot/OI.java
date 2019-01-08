@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -25,8 +26,8 @@ public class OI {
   public static final int KLogitechDrive = 1;
 
   //Controllers
-  public Joystick xbox;
-  public Joystick logitech;
+  // public Joystick xbox;
+  // public Joystick logitech;
 
   //DeadZone
   public static final double KDeadZoneAxis = 0.2; 
@@ -41,16 +42,6 @@ public class OI {
 	public static final int KButton7 = 7;
 	public static final int KButton8 = 8;
 
-  //Logitech Buttons
-  public JoystickButton btn1;
-  public JoystickButton btn2; 
-  public JoystickButton btn3;
-  public JoystickButton btn4;
-  public JoystickButton btn5; 
-  public JoystickButton btn6; 
-  public JoystickButton btn7; 
-  public JoystickButton btn8; 
-
   //Xbox Button Constants 
   public static final int KButtonA = 1;
 	public static final int KButtonB = 2;
@@ -61,17 +52,31 @@ public class OI {
 	public static final int KStartButton = 8;
 	public static final int KLeftTrigger = 9;
   public static final int KRightTrigger = 10;
+
+  public Joystick logitech, xBox;
+	public JoystickButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8; // Logitech Button
+	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
+
+  // //Logitech Buttons
+  // public JoystickButton btn1;
+  // public JoystickButton btn2; 
+  // public JoystickButton btn3;
+  // public JoystickButton btn4;
+  // public JoystickButton btn5; 
+  // public JoystickButton btn6; 
+  // public JoystickButton btn7; 
+  // public JoystickButton btn8; 
   
-  //Xbox Buttons 
-  public JoystickButton btnA; 
-  public JoystickButton btnB;
-  public JoystickButton btnX;
-  public JoystickButton btnY;
-  public JoystickButton leftBumper;
-  public JoystickButton rightBumper;
-  public JoystickButton startButton; 
-  public JoystickButton leftTrigger; 
-  public JoystickButton rightTigger; 
+  // //Xbox Buttons 
+  // public JoystickButton btnA; 
+  // public JoystickButton btnB;
+  // public JoystickButton btnX;
+  // public JoystickButton btnY;
+  // public JoystickButton leftBumper;
+  // public JoystickButton rightBumper;
+  // public JoystickButton startButton; 
+  // public JoystickButton leftTrigger; 
+  // public JoystickButton rightTigger; 
 
 
   public OI(){
@@ -101,7 +106,7 @@ public class OI {
     btnRT = new JoystickButton(xBox, KRightTrigger);
     
     //Button Assigned Commands 
-    btn5.whenPressed(new ShiftBase());
+    btn5.whenPressed(new ToggleShift());
   }
 
   public double getRightAxis() {

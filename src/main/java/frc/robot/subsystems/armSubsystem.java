@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.commands.stopArm;
 
-import static org.junit.Assume.assumeNoException;
+//import static org.junit.Assume.assumeNoException;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -19,7 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class driveSubsystem extends Subsystem {
+public class armSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -27,7 +27,7 @@ public class driveSubsystem extends Subsystem {
 
   private TalonSRX armTalon;
 
-  public driveSubsystem()
+  public armSubsystem()
   {
     armTalon = new TalonSRX(KArmTalon);
   }

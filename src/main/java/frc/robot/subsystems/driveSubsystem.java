@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.commands.driveWithJoysticks;
 
-import static org.junit.Assume.assumeNoException;
-
+//import static org.junit.Assume.assumeNoException;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -53,15 +53,13 @@ public class driveSubsystem extends Subsystem {
     driveRightRear = new TalonSRX(KDriveRightRearTalon);
     driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
-    shifterSolenoid1 = new DoubleSolenoid(KShifterSolenoid1);
-    shifterSolenoid2 = new DoubleSolenoid(KShifterSolenoid2);
+    shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
     driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());
     driveRightRear.set(ControlMode.Follower, driveRightFront.getDeviceID());
     driveLeftTop.set(ControlMode.Follower, driveLeftFront.getDeviceID());
     driveLeftRear.set(ControlMode.Follower, driveLeftFront.getDeviceID());
 
-    shifterSolenoid2.set(ControlMode.Follower, shifterSolenoid1.getDeviceID());
   }
 
   @Override
@@ -83,14 +81,15 @@ public class driveSubsystem extends Subsystem {
     else {
       driveLeftFront.set(ControlMode.PercentOutput, 0);
     }
-  
+  }
+
 	public void highShiftBase() {
-		shifterSolenoid1.set(DoubleSolenoid.Value.kReverse);
-    }
+    shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+  }
   
 	public void lowShiftBase() {
-		shifterSolenoid1.set(DoubleSolenoid.Value.kForward);
-    }
+    shifterSolenoid.set(DoubleSolenoid.Value.kForward);
+  }
 
 	public void toggleShift() {
 		if (shifterSolenoid.get() == DoubleSolenoid.Value.kForward) {

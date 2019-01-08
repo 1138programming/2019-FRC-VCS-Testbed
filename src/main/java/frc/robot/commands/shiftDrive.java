@@ -13,9 +13,9 @@ import frc.robot.Robot;
 /**
  *
  */
-public class ShiftBase extends Command
+public class shiftDrive extends Command
 {
-	public shiftDrive()
+	public void shiftDrive()
 	{
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.DRIVE_SUBSYSTEM);

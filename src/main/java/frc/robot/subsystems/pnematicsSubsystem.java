@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.AnalogInput;
 
-import static org.junit.Assume.assumeNoException;
+//import static org.junit.Assume.assumeNoException;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -23,7 +23,7 @@ public class pnematicsSubsystem extends Subsystem {
   private Compressor pCompressor;
 	private AnalogInput pressureSensor;
 
-	public Pneumatics()
+	public void Pneumatics()
 	{
 		pCompressor = new Compressor(0);
 		pressureSensor = new AnalogInput(0);
