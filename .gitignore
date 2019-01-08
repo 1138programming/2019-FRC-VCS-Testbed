@@ -1,0 +1,16 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+#BlueJ files
+*.ctxt
+
+bin/
+build/
+
+.classpath
+.project
+
+.gradle/
