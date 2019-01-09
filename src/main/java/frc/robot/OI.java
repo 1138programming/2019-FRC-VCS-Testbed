@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.commands.ShiftDrive;
+import frc.robot.commands.ArmUp;
+import frc.robot.commands.ArmDown;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,12 +29,10 @@ public class OI {
   public static final int KXboxArms = 0;
   public static final int KLogitechDrive = 1;
 
-  //Controllers
-  public Joystick xbox;
-  // public Joystick logitech;
-
   //DeadZone
   public static final double KDeadZoneAxis = 0.2; 
+  //ArmSpeed
+  public static final int KArmSpeed = 127;
 
   //Logitech Button Constants 
   public static final int KButton1 = 1;
@@ -55,7 +55,7 @@ public class OI {
 	public static final int KLeftTrigger = 9;
   public static final int KRightTrigger = 10;
 
-  public Joystick logitech, xBox;
+  public Joystick logitech, xbox;
 	public JoystickButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8; // Logitech Button
 	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
 
@@ -97,18 +97,21 @@ public class OI {
 		btn8 = new JoystickButton(logitech, KButton8);
 
 		//XBox Buttons
-		btnA = new JoystickButton(xBox, KButtonA);
-		btnB = new JoystickButton(xBox, KButtonB);
-		btnX = new JoystickButton(xBox, KButtonX);
-		btnY = new JoystickButton(xBox, KButtonY);
-		btnLB = new JoystickButton(xBox, KLeftBumper);
-		btnRB = new JoystickButton(xBox, KRightBumper);
-		btnStrt = new JoystickButton(xBox, KStartButton);
-		btnLT = new JoystickButton(xBox, KLeftTrigger);
-    btnRT = new JoystickButton(xBox, KRightTrigger);
+		btnA = new JoystickButton(xbox, KButtonA);
+		btnB = new JoystickButton(xbox, KButtonB);
+		btnX = new JoystickButton(xbox, KButtonX);
+		btnY = new JoystickButton(xbox, KButtonY);
+		btnLB = new JoystickButton(xbox, KLeftBumper);
+		btnRB = new JoystickButton(xbox, KRightBumper);
+		btnStrt = new JoystickButton(xbox, KStartButton);
+		btnLT = new JoystickButton(xbox, KLeftTrigger);
+    btnRT = new JoystickButton(xbox, KRightTrigger);
     
     //Button Assigned Commands 
     btn5.whenPressed(new ShiftDrive());
+    btnLT.whenPressed(new ArmUp());
+    btnLB.whenPressed(new ArmDown());
+
   }
 
   public double getRightAxis() {
@@ -128,6 +131,14 @@ public class OI {
     }
   }
 
+  public double getXboxAxis() {
+    if(KDeadZoneAxis < xbox.getThrottle() || KDeadZoneAxis > -xbox.getThrottle()){
+      return xbox.getThrottle(); 
+    }
+    else {
+      return 0; 
+    }
+  }
   //Joystick stick = new Joystick(port);
   //Button button = new JoystickButton(stick, buttonNumber);
 

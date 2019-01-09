@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.robot.commands.StopArm;
+import frc.robot.commands.MoveArmWithJoysticks;
 
 //import static org.junit.Assume.assumeNoException;
 
@@ -24,6 +24,7 @@ public class ArmSubsystem extends Subsystem {
   // here. Call these from Commands.
 
   public static final int KArmTalon = 10; 
+  public static final double KDeadZone = 0.2;
 
   private TalonSRX armTalon;
 
@@ -35,10 +36,18 @@ public class ArmSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     //default command for a subsystem here.
-   setDefaultCommand(new StopArm());
+   setDefaultCommand(new MoveArmWithJoysticks());
   }
 
   public void move(int speed) {
     armTalon.set(ControlMode.PercentOutput, speed);
+  }
+  public void moveWithJoysticks(double speed) {
+    if(KDeadZone < speed || KDeadZone > -speed) {
+      armTalon.set(ControlMode.PercentOutput, speed);
+    }
+    else {
+      armTalon.set(ControlMode.PercentOutput, 0);
+    }
   }
 }
