@@ -10,6 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+import frc.robot.subsystems.ArmSubsystem;
+
 import frc.robot.OI;
 
 /**
@@ -29,7 +31,7 @@ public class ArmDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ARM_SUBSYSTEM.move(OI.KArmSpeed);
+    Robot.ARM_SUBSYSTEM.move(ArmSubsystem.KArmSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

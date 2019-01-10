@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.OI;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.commands.DriveWithJoysticks;
@@ -29,7 +31,6 @@ public class DriveSubsystem extends Subsystem {
   public static final int KDriveLeftFrontTalon = 4; 
   public static final int KDriveRightRearTalon = 5; 
   public static final int KDriveLeftRearTalon = 6; 
-  public static final double KDeadZone = 0.2; 
 
   public static final int KShifterSolenoid1 = 1;
   public static final int KShifterSolenoid2 = 2; 
@@ -68,13 +69,14 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void tankDrive(double rightSpeed, double leftSpeed) {
-    if(KDeadZone < rightSpeed || KDeadZone > -rightSpeed) {
+    if(OI.KDeadZone < rightSpeed || OI.KDeadZone > -rightSpeed) {
       driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
     }
     else {
       driveLeftFront.set(ControlMode.PercentOutput, 0);
     }
-    if (KDeadZone < leftSpeed || KDeadZone > -leftSpeed) {
+    
+    if (OI.KDeadZone < leftSpeed || OI.KDeadZone > -leftSpeed) {
       driveLeftFront.set(ControlMode.PercentOutput, leftSpeed);
     }
     else {

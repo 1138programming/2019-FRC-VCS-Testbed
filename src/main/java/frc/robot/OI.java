@@ -31,8 +31,7 @@ public class OI {
 
   //DeadZone
   public static final double KDeadZoneAxis = 0.2; 
-  //ArmSpeed
-  public static final int KArmSpeed = 127;
+  public static final double KDeadZone = 0.2; 
 
   //Logitech Button Constants 
   public static final int KButton1 = 1;
