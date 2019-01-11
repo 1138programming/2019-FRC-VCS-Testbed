@@ -58,28 +58,6 @@ public class OI {
 	public JoystickButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8; // Logitech Button
 	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
 
-  // //Logitech Buttons
-  // public JoystickButton btn1;
-  // public JoystickButton btn2; 
-  // public JoystickButton btn3;
-  // public JoystickButton btn4;
-  // public JoystickButton btn5; 
-  // public JoystickButton btn6; 
-  // public JoystickButton btn7; 
-  // public JoystickButton btn8; 
-  
-  // //Xbox Buttons 
-  // public JoystickButton btnA; 
-  // public JoystickButton btnB;
-  // public JoystickButton btnX;
-  // public JoystickButton btnY;
-  // public JoystickButton leftBumper;
-  // public JoystickButton rightBumper;
-  // public JoystickButton startButton; 
-  // public JoystickButton leftTrigger; 
-  // public JoystickButton rightTigger; 
-
-
   public OI(){
     //Controllers 
     logitech = new Joystick(KLogitechDrive);
