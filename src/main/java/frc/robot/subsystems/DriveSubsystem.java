@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.commands.DriveWithJoysticks;
 
+//import static org.junit.Assume.assumeNoException;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -24,40 +25,40 @@ public class DriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public static final int KMotorRightTopTalon = 1; 
-  public static final int KMotorLeftTopTalon = 2; 
-  public static final int KMotorRightFrontTalon = 3; 
-  public static final int KMotorLeftFrontTalon = 4; 
-  public static final int KMotorRightRearTalon = 5; 
-  public static final int KMotorLeftRearTalon = 6; 
+  public static final int KDriveRightTopTalon = 1; 
+  public static final int KDriveLeftTopTalon = 2; 
+  public static final int KDriveRightFrontTalon = 3; 
+  public static final int KDriveLeftFrontTalon = 4; 
+  public static final int KDriveRightRearTalon = 5; 
+  public static final int KDriveLeftRearTalon = 6; 
 
-  public static final int KShiftSolenoid1 = 1;
-  public static final int KShiftSolenoid2 = 2; 
+  public static final int KShifterSolenoid1 = 1;
+  public static final int KShifterSolenoid2 = 2; 
 
-  private TalonSRX motorRightTop;
-  private TalonSRX motorLeftTop;  
-  private TalonSRX motorRightFront; 
-  private TalonSRX motorLeftFront;
-  private TalonSRX motorRightRear; 
-  private TalonSRX motorLeftRear;
+  private TalonSRX driveRightTop;
+  private TalonSRX driveLeftTop;  
+  private TalonSRX driveRightFront; 
+  private TalonSRX driveLeftFront;
+  private TalonSRX driveRightRear; 
+  private TalonSRX driveLeftRear;
 
-  private DoubleSolenoid shiftSolenoid;
+  private DoubleSolenoid shifterSolenoid;
 
   public DriveSubsystem()
   {
-    motorRightTop = new TalonSRX(KMotorRightTopTalon);
-    motorLeftTop = new TalonSRX(KMotorLeftTopTalon);
-    motorRightFront = new TalonSRX(KMotorRightFrontTalon); 
-    motorLeftFront = new TalonSRX(KMotorLeftFrontTalon);
-    motorRightRear = new TalonSRX(KMotorRightRearTalon);
-    motorLeftRear = new TalonSRX(KMotorLeftRearTalon);
+    driveRightTop = new TalonSRX(KDriveRightTopTalon);
+    driveLeftTop = new TalonSRX(KDriveLeftTopTalon);
+    driveRightFront = new TalonSRX(KDriveRightFrontTalon); 
+    driveLeftFront = new TalonSRX(KDriveLeftFrontTalon);
+    driveRightRear = new TalonSRX(KDriveRightRearTalon);
+    driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
-    shiftSolenoid = new DoubleSolenoid(KShiftSolenoid1, KShiftSolenoid2);
+    shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
-    motorRightTop.set(ControlMode.Follower, motorRightFront.getDeviceID());
-    motorRightRear.set(ControlMode.Follower, motorRightFront.getDeviceID());
-    motorLeftTop.set(ControlMode.Follower, motorLeftFront.getDeviceID());
-    motorLeftRear.set(ControlMode.Follower, motorLeftFront.getDeviceID());
+    driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());
+    driveRightRear.set(ControlMode.Follower, driveRightFront.getDeviceID());
+    driveLeftTop.set(ControlMode.Follower, driveLeftFront.getDeviceID());
+    driveLeftRear.set(ControlMode.Follower, driveLeftFront.getDeviceID());
 
   }
 
@@ -69,30 +70,30 @@ public class DriveSubsystem extends Subsystem {
 
   public void tankDrive(double rightSpeed, double leftSpeed) {
     if(OI.KDeadZone < rightSpeed || OI.KDeadZone > -rightSpeed) {
-      motorRightFront.set(ControlMode.PercentOutput, rightSpeed);
+      driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
     }
     else {
-      motorLeftFront.set(ControlMode.PercentOutput, 0);
+      driveLeftFront.set(ControlMode.PercentOutput, 0);
     }
     
     if (OI.KDeadZone < leftSpeed || OI.KDeadZone > -leftSpeed) {
-      motorLeftFront.set(ControlMode.PercentOutput, leftSpeed);
+      driveLeftFront.set(ControlMode.PercentOutput, leftSpeed);
     }
     else {
-      motorLeftFront.set(ControlMode.PercentOutput, 0);
+      driveLeftFront.set(ControlMode.PercentOutput, 0);
     }
   }
 
 	public void highShiftBase() {
-    shiftSolenoid.set(DoubleSolenoid.Value.kReverse);
+    shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
   
 	public void lowShiftBase() {
-    shiftSolenoid.set(DoubleSolenoid.Value.kForward);
+    shifterSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
 	public void toggleShift() {
-		if (shiftSolenoid.get() == DoubleSolenoid.Value.kForward) {
+		if (shifterSolenoid.get() == DoubleSolenoid.Value.kForward) {
 			highShiftBase();
 		}
 		else {
