@@ -24,8 +24,6 @@ import frc.robot.subsystems.ArmSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
-  public static ArmSubsystem ARM_SUBSYSTEM = new ArmSubsystem();
   public static OI oi;
 
   Command m_autonomousCommand;
