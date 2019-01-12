@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.commands.ShiftDrive;
-import frc.robot.commands.ArmUp;
-import frc.robot.commands.ArmDown;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -86,8 +84,6 @@ public class OI {
     
     //Button Assigned Commands 
     btn5.whenPressed(new ShiftDrive());
-    btnLT.whenPressed(new ArmUp());
-    btnLB.whenPressed(new ArmDown());
 
   }
 
@@ -108,14 +104,6 @@ public class OI {
     }
   }
 
-  public double getXboxAxis() {
-    if(KDeadZoneAxis < xbox.getThrottle() || KDeadZoneAxis > -xbox.getThrottle()){
-      return xbox.getThrottle(); 
-    }
-    else {
-      return 0; 
-    }
-  }
   //Joystick stick = new Joystick(port);
   //Button button = new JoystickButton(stick, buttonNumber);
 
