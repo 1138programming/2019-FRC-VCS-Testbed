@@ -10,10 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
-import frc.robot.commands.ShiftDrive;
-import frc.robot.commands.ArmUp;
-import frc.robot.commands.ArmDown;
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
