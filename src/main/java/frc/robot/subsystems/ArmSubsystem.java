@@ -13,9 +13,11 @@ import frc.robot.commands.MoveArmWithJoysticks;
 import frc.robot.OI;
 
 //import static org.junit.Assume.assumeNoException;
-
+/*
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+*/
+import com.ctre.phoenix.motorcontrol.StickyFaults; 
 import edu.wpi.first.wpilibj.Spark;
 
 /**

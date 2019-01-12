@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import frc.robot.OI;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.commands.DriveWithJoysticks;
@@ -69,6 +70,8 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void tankDrive(double rightSpeed, double leftSpeed) {
+    SmartDashboard.putNumber("Left Base Input", leftSpeed);
+		SmartDashboard.putNumber("Right Base Input", rightSpeed);
     if(OI.KDeadZone < rightSpeed || OI.KDeadZone > -rightSpeed) {
       driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
     }
@@ -99,5 +102,9 @@ public class DriveSubsystem extends Subsystem {
 		else {
 			lowShiftBase();
 		}
+  }
+  public void driveClearSticky() {
+    driveRightFront.clearStickyFaults(1000);
+    driveLeftFront.clearStickyFaults(1000);
   }
 }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.commands.ShiftDrive;
+import frc.robot.commands.Diagnostic;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
 
@@ -86,6 +87,7 @@ public class OI {
     
     //Button Assigned Commands 
     btn5.whenPressed(new ShiftDrive());
+    btn2.whenPressed(new Diagnostic());
     btnLT.whenPressed(new ArmUp());
     btnLB.whenPressed(new ArmDown());
 
