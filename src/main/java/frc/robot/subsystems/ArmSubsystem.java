@@ -16,6 +16,7 @@ import frc.robot.OI;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.Spark;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -29,11 +30,11 @@ public class ArmSubsystem extends Subsystem {
   //ArmSpeed
   public static final double KArmSpeed = 1.0; // 100%
 
-  private TalonSRX armTalon;
+  private Spark armTalon;
 
   public ArmSubsystem()
   {
-    armTalon = new TalonSRX(KArmTalon);
+    armTalon = new Spark(KArmTalon);
   }
 
   @Override
@@ -43,14 +44,14 @@ public class ArmSubsystem extends Subsystem {
   }
 
   public void move(double speed) {
-    armTalon.set(ControlMode.PercentOutput, speed);
+    armTalon.set(speed);
   }
   public void moveWithJoysticks(double speed) {
     if(OI.KDeadZone < speed || OI.KDeadZone > -speed) {
-      armTalon.set(ControlMode.PercentOutput, speed);
+      armTalon.set(speed);
     }
     else {
-      armTalon.set(ControlMode.PercentOutput, 0);
+      armTalon.set(0);
     }
   }
 }
