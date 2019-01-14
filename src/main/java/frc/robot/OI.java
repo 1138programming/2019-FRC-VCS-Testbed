@@ -27,8 +27,8 @@ public class OI {
   // number it is.
 
   //Controller Constants 
-  public static final int KXboxArms = 0;
-  public static final int KLogitechDrive = 1;
+  public static final int KLogitechDrive = 0;
+  public static final int KXboxArms = 1;
 
   //DeadZone
   public static final double KDeadZoneAxis = 0.2; 
@@ -94,7 +94,7 @@ public class OI {
   }
 
   public double getRightAxis() {
-    if(KDeadZoneAxis < logitech.getThrottle() || KDeadZoneAxis > -logitech.getThrottle()){
+    if(logitech.getThrottle() > KDeadZoneAxis || logitech.getThrottle() < -KDeadZoneAxis){
       return logitech.getThrottle(); 
     }
     else {
@@ -102,7 +102,7 @@ public class OI {
     }
   }
   public double getLeftAxis() {
-    if(KDeadZoneAxis < logitech.getY() || KDeadZoneAxis > -logitech.getY()){
+    if(logitech.getY() > KDeadZoneAxis || logitech.getY() < -KDeadZoneAxis){
       return logitech.getY(); 
     }
     else {
@@ -111,8 +111,8 @@ public class OI {
   }
 
   public double getXboxAxis() {
-    if(KDeadZoneAxis < xbox.getThrottle() || KDeadZoneAxis > -xbox.getThrottle()){
-      return xbox.getThrottle(); 
+    if(xbox.getThrottle() > KDeadZoneAxis || xbox.getThrottle() < -KDeadZoneAxis){
+      return xbox.getY(); 
     }
     else {
       return 0; 

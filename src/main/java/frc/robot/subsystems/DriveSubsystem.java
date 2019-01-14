@@ -54,6 +54,10 @@ public class DriveSubsystem extends Subsystem {
     driveRightRear = new TalonSRX(KDriveRightRearTalon);
     driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
+    driveRightFront.setInverted(true);
+    driveRightTop.setInverted(true);
+    driveRightRear.setInverted(true);p
+
     shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
     driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());
@@ -69,22 +73,12 @@ public class DriveSubsystem extends Subsystem {
    setDefaultCommand(new DriveWithJoysticks());
   }
 
-  public void tankDrive(double rightSpeed, double leftSpeed) {
+  public void tankDrive(double leftSpeed, double rightSpeed) {
     SmartDashboard.putNumber("Left Base Input", leftSpeed);
 		SmartDashboard.putNumber("Right Base Input", rightSpeed);
-    if(OI.KDeadZone < rightSpeed || OI.KDeadZone > -rightSpeed) {
-      driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
-    }
-    else {
-      driveLeftFront.set(ControlMode.PercentOutput, 0);
-    }
     
-    if (OI.KDeadZone < leftSpeed || OI.KDeadZone > -leftSpeed) {
-      driveLeftFront.set(ControlMode.PercentOutput, leftSpeed);
-    }
-    else {
-      driveLeftFront.set(ControlMode.PercentOutput, 0);
-    }
+    driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
+    driveLeftFront.set(ControlMode.PercentOutput, leftSpeed);
   }
 
 	public void highShiftBase() {
