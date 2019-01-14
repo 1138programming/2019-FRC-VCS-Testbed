@@ -13,8 +13,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.RPi;
+
+import java.io.IOException;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,9 +25,7 @@ import frc.robot.subsystems.ArmSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem();
-  public static ArmSubsystem ARM_SUBSYSTEM = new ArmSubsystem();
-  public static OI oi;
+  public static RPi raspi = new RPi();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -37,7 +36,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    oi = new OI();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -53,6 +51,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    try {
+      raspi.sendMyName();
+    } catch (IOException e) {
+
+    }
   }
 
   /**

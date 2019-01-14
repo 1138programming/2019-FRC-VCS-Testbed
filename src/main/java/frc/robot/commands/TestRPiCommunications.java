@@ -13,10 +13,9 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class MoveArmWithJoysticks extends Command {
-  public MoveArmWithJoysticks() {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.ARM_SUBSYSTEM);
+public class TestRPiCommunications extends Command {
+  public TestRPiCommunications() {
+    
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +26,6 @@ public class MoveArmWithJoysticks extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ARM_SUBSYSTEM.moveWithJoysticks(Robot.oi.getXboxAxis());
   }
 
   // Make this return true when this Command no longer needs to run execute()
