@@ -1,4 +1,4 @@
-package frc.team1138.robot.MotionProfile;
+package frc.robot.MotionProfile;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motion.*;
-import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
+//import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
+import com.ctre.phoenix.motion.TrajectoryPoint;
 
 public class ProfileExecutor {
 

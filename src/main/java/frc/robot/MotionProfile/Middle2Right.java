@@ -1,4 +1,4 @@
-package frc.team1138.robot.MotionProfile;
+package frc.robot.MotionProfile;
 
 public class Middle2Right{
     public static double left_Part1[][] = new double[][]{

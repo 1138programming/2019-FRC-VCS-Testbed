@@ -1,4 +1,4 @@
-package frc.team1138.robot.MotionProfile;
+package frc.robot.MotionProfile;
 
 public class SwitchOnRight2Right
 {

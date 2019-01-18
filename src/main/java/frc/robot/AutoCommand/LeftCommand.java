@@ -1,16 +1,16 @@
-package frc.team1138.robot.AutoCommand;
+package frc.robot.AutoCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.team1138.robot.Robot;
-import frc.team1138.robot.MotionProfile.CrossLine;
-import openrio.powerup.MatchData;
+import frc.robot.Robot;
+import frc.robot.MotionProfile.CrossLine;
+//import openrio.powerup.MatchData;
 
 public class LeftCommand extends CommandGroup
 {
     public LeftCommand()
     {
-        requires(Robot.DRIVE_BASE);
-        MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
+        requires(Robot.DRIVE_SUBSYSTEM);
+        //MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
         addSequential(new TestMotionProfile(CrossLine.left, CrossLine.right));
         // if (switchSide == MatchData.OwnedSide.LEFT)
         // {

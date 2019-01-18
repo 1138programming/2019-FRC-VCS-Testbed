@@ -62,6 +62,31 @@ public class DriveSubsystem extends Subsystem {
 
   }
 
+  	// These six methods just return the base talons if we need to access them somewhere else
+	public TalonSRX getBaseLeftFront() {
+		return this.driveLeftFront;
+  }
+  
+	public TalonSRX getBaseLeftRear() {
+		return this.driveLeftRear;
+  }
+  
+	public TalonSRX getBaseLeftTop() {
+		return this.driveLeftTop;
+	}
+	
+	public TalonSRX getBaseRightRear() {
+		return this.driveRightRear;
+  }
+  
+	public TalonSRX getBaseRightFront() {
+		return this.driveRightFront;
+  }
+  
+	public TalonSRX getBaseRightTop() {
+		return this.driveRightTop;
+	}
+
   @Override
   public void initDefaultCommand() {
     //default command for a subsystem here.
@@ -100,4 +125,21 @@ public class DriveSubsystem extends Subsystem {
 			lowShiftBase();
 		}
   }
+
+  // Resets both of the base encoders
+	public void resetEncoders()
+	{
+		driveLeftFront.getSensorCollection().setQuadraturePosition(0, 0);
+		driveRightFront.getSensorCollection().setQuadraturePosition(0, 0);
+	}
+
+  // This sets the motion control mode for the left side of the base
+	public void setLeftMotionControl(ControlMode mode, double value) {
+		this.driveLeftFront.set(mode, value);
+	}
+	
+	// This sets the motion control mode for the right side of the base
+	public void setRightMotionControl(ControlMode mode, double value) {
+		this.driveRightFront.set(mode, value);
+	}
 }

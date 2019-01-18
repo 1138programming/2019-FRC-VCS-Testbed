@@ -1,19 +1,19 @@
-package frc.team1138.robot.AutoCommand;
+package frc.robot.AutoCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.team1138.robot.MotionProfile.Ways;
-import frc.team1138.robot.commands.PositionLift;
-import frc.team1138.robot.subsystems.Lift.LiftPos;
-// import frc.team1138.robot.MotionProfile.Middle2Right;
-import openrio.powerup.MatchData;
+import frc.robot.MotionProfile.Ways;
+// import frc.robot.commands.PositionLift;
+// import frc.robot.subsystems.Lift.LiftPos;
+// import frc.robot.MotionProfile.Middle2Right;
+// import openrio.powerup.MatchData;
 
 public class MiddleCommand extends CommandGroup
 {
 	public MiddleCommand()
 	{
-		MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
+		// MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
 		
-		if (switchSide == MatchData.OwnedSide.LEFT)
+		/* if (switchSide == MatchData.OwnedSide.LEFT)
 		{
 			addSequential(new TrajectoryCommand(Ways.MID_2_LEFT_SWITCH, 8, 5, 70, 0.05, 2.25));
 		} 
@@ -22,8 +22,8 @@ public class MiddleCommand extends CommandGroup
 			addParallel(new TrajectoryCommand(Ways.MID_2_RIGHT_SWITCH, 8, 5, 70, 0.05, 2.25));
 			addParallel(new PositionLift(LiftPos.MIDDLE, 1.0));
 		}
-		else {
+		else { */
 			addSequential(new TrajectoryCommand(Ways.CROSS_LINE, 8, 5, 70, 0.05, 2.25));
-		}
+		// }
 	}
 }
