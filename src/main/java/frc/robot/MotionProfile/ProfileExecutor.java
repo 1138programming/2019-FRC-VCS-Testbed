@@ -242,18 +242,22 @@ public class ProfileExecutor {
 	 * @param durationMs
 	 * @return enum equivalent of durationMs
 	 */
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
+	// private TrajectoryDuration GetTrajectoryDuration(int durationMs)
+	// {	 
+	// 	/* create return value */
+	// 	TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
+	// 	/* convert duration to supported type */
+	// 	retval = retval.valueOf(durationMs);
+	// 	/* check that it is valid */
+	// 	if (retval.value != durationMs) {
+	// 		DriverStation.reportError("Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);		
+	// 	}
+	// 	/* pass to caller */
+	// 	return retval;
+	// }
+	private int GetTrajectoryDuration(int durationMs)
 	{	 
-		/* create return value */
-		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
-		/* convert duration to supported type */
-		retval = retval.valueOf(durationMs);
-		/* check that it is valid */
-		if (retval.value != durationMs) {
-			DriverStation.reportError("Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);		
-		}
-		/* pass to caller */
-		return retval;
+		return durationMs;
 	}
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
