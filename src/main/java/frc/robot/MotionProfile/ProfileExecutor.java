@@ -255,10 +255,26 @@ public class ProfileExecutor {
 	// 	/* pass to caller */
 	// 	return retval;
 	// }
+	
 	private int GetTrajectoryDuration(int durationMs)
-	{	 
-		return durationMs;
+	{
+		int[] values = new int[]{0, 5, 10, 20, 30, 40, 50, 100};
+		int retval = 0;
+		
+		for (int td: values) {
+			if (td == durationMs || td == 100) {
+				retval = durationMs;
+				break;
+			}
+		}
+
+		if (retval != durationMs) {
+			DriverStation.reportError("Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);		
+		}
+		
+		return retval;
 	}
+
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */

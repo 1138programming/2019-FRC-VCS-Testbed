@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Trajectory;
 
 import com.ctre.phoenix.motion.*;
-//import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 
 public class TrajectoryExecutor {
@@ -296,10 +295,26 @@ public class TrajectoryExecutor {
 	// 	/* pass to caller */
 	// 	return retval;
 	// }
+
 	private int GetTrajectoryDuration(int durationMs)
-	{	 
-		return durationMs;
+	{
+		int[] values = new int[]{0, 5, 10, 20, 30, 40, 50, 100};
+		int retval = 0;
+		
+		for (int td: values) {
+			if (td == durationMs || td == 100) {
+				retval = durationMs;
+				break;
+			}
+		}
+
+		if (retval != durationMs) {
+			DriverStation.reportError("Trajectory Duration not supported - use configMotionProfileTrajectoryPeriod instead", false);		
+		}
+		
+		return retval;
 	}
+
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
@@ -310,7 +325,7 @@ public class TrajectoryExecutor {
 
 		/* create an empty point */
 		TrajectoryPoint leftPoint = new TrajectoryPoint();
-		TrajectoryPoint righPoint = new TrajectoryPoint();
+		TrajectoryPoint rightPoint = new TrajectoryPoint();
 		/* did we get an underrun condition since last time we checked ? */
 		if (leftProfileStatus.hasUnderrun) {
 			/* better log it so we know about it */
@@ -349,38 +364,38 @@ public class TrajectoryExecutor {
 			double right_velocityRPM = rightTraj.get(i).velocity;
 			/* for each point, fill our structure and pass it to API */
 			leftPoint.position = left_positionRot * Constants.kSensorUnitsPerRotation; //Convert Revolutions to Units
-			righPoint.position = right_positionRot * Constants.kSensorUnitsPerRotation; //Convert Revolutions to Units
+			rightPoint.position = right_positionRot * Constants.kSensorUnitsPerRotation; //Convert Revolutions to Units
 			
 			leftPoint.velocity = left_velocityRPM * Constants.kSensorUnitsPerRotation / 600.0; //Convert RPM to Units/100ms
-			righPoint.velocity = right_velocityRPM * Constants.kSensorUnitsPerRotation / 600.0; //Convert RPM to Units/100ms
+			rightPoint.velocity = right_velocityRPM * Constants.kSensorUnitsPerRotation / 600.0; //Convert RPM to Units/100ms
 
 			leftPoint.headingDeg = 0; /* future feature - not used in this example*/
-			righPoint.headingDeg = 0; /* future feature - not used in this example*/
+			rightPoint.headingDeg = 0; /* future feature - not used in this example*/
 
 			leftPoint.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
-			righPoint.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
+			rightPoint.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
 
 			leftPoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
-			righPoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
+			rightPoint.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
 
 			leftPoint.timeDur = GetTrajectoryDuration((int) (leftTraj.get(i).dt * 1000));
 			leftPoint.zeroPos = false;
 
-			righPoint.timeDur = GetTrajectoryDuration((int) (rightTraj.get(i).dt * 1000));
-			righPoint.zeroPos = false;
+			rightPoint.timeDur = GetTrajectoryDuration((int) (rightTraj.get(i).dt * 1000));
+			rightPoint.zeroPos = false;
 
 			if (i == 0) {
 				leftPoint.zeroPos = true; /* set this to true on the first point */
-				righPoint.zeroPos = true;
+				rightPoint.zeroPos = true;
 			}
 			leftPoint.isLastPoint = false;
-			righPoint.isLastPoint = false;
+			rightPoint.isLastPoint = false;
 			if ((i + 1) == totalCnt) {
 				leftPoint.isLastPoint = true; /* set this to true on the last point  */
-				righPoint.isLastPoint = true; /* set this to true on the last point  */
+				rightPoint.isLastPoint = true; /* set this to true on the last point  */
 			}
 			leftTalon.pushMotionProfileTrajectory(leftPoint);
-			rightTalon.pushMotionProfileTrajectory(righPoint);
+			rightTalon.pushMotionProfileTrajectory(rightPoint);
 		}
 	}
 	/**
