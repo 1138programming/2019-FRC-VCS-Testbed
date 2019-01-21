@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.commands.ShiftDrive;
+import frc.robot.commands.Diagnostic;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
-import frc.robot.AutoCommand.TestMotionProfile;
+
 import frc.robot.MotionProfile.CrossLine;
+import frc.robot.AutoCommand.TestMotionProfile;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -62,28 +64,6 @@ public class OI {
 
   private static final CrossLine crossLine = new CrossLine();
 
-  // //Logitech Buttons
-  // public JoystickButton btn1;
-  // public JoystickButton btn2; 
-  // public JoystickButton btn3;
-  // public JoystickButton btn4;
-  // public JoystickButton btn5; 
-  // public JoystickButton btn6; 
-  // public JoystickButton btn7; 
-  // public JoystickButton btn8; 
-  
-  // //Xbox Buttons 
-  // public JoystickButton btnA; 
-  // public JoystickButton btnB;
-  // public JoystickButton btnX;
-  // public JoystickButton btnY;
-  // public JoystickButton leftBumper;
-  // public JoystickButton rightBumper;
-  // public JoystickButton startButton; 
-  // public JoystickButton leftTrigger; 
-  // public JoystickButton rightTigger; 
-
-
   public OI(){
     //Controllers 
     logitech = new Joystick(KLogitechDrive);
@@ -109,34 +89,35 @@ public class OI {
 		btnStrt = new JoystickButton(xbox, KStartButton);
 		btnLT = new JoystickButton(xbox, KLeftTrigger);
     btnRT = new JoystickButton(xbox, KRightTrigger);
-
+    
     //Button Assigned Commands 
     btn5.whenPressed(new ShiftDrive());
+    btn2.whenPressed(new Diagnostic());
     btnLT.whenPressed(new ArmUp());
     btnLB.whenPressed(new ArmDown());
     //btnB.whenPressed(new TestMotionProfile(crossLine.left, crossLine.right));
   }
 
   public double getRightAxis() {
-    if(KDeadZoneAxis < Math.abs(logitech.getThrottle())) {
+    if(logitech.getThrottle() > KDeadZoneAxis || logitech.getThrottle() < -KDeadZoneAxis){
       return logitech.getThrottle(); 
     }
     else {
-      return 0;
+      return 0; 
     }
   }
   public double getLeftAxis() {
-    if(KDeadZoneAxis < Math.abs(logitech.getY())) {
+    if(logitech.getY() > KDeadZoneAxis || logitech.getY() < -KDeadZoneAxis){
       return logitech.getY(); 
     }
     else {
-      return 0;
+      return 0; 
     }
   }
 
   public double getXboxAxis() {
-    if(KDeadZoneAxis < xbox.getThrottle() || KDeadZoneAxis > -xbox.getThrottle()){
-      return xbox.getThrottle(); 
+    if(xbox.getThrottle() > KDeadZoneAxis || xbox.getThrottle() < -KDeadZoneAxis){
+      return xbox.getY(); 
     }
     else {
       return 0; 

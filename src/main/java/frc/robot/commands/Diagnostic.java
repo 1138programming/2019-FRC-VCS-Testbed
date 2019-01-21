@@ -13,8 +13,8 @@ import frc.robot.Robot;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class DriveWithJoysticks extends Command {
-  public DriveWithJoysticks() {
+public class Diagnostic extends Command {
+  public Diagnostic() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.DRIVE_SUBSYSTEM);
   }
@@ -27,13 +27,13 @@ public class DriveWithJoysticks extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.DRIVE_SUBSYSTEM.tankDrive(Robot.oi.getLeftAxis(), Robot.oi.getRightAxis());
+    Robot.DRIVE_SUBSYSTEM.driveClearSticky(); 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

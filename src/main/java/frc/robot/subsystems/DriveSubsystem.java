@@ -9,8 +9,9 @@ package frc.robot.subsystems;
 
 import frc.robot.OI;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
 import frc.robot.commands.DriveWithJoysticks;
 
 //import static org.junit.Assume.assumeNoException;
@@ -29,7 +30,7 @@ public class DriveSubsystem extends Subsystem {
   public static final int KDriveLeftTopTalon = 9; 
   public static final int KDriveRightFrontTalon = 1; 
   public static final int KDriveLeftFrontTalon = 5; 
-  public static final int KDriveRightRearTalon = 2; 
+  public static final int KDriveRightRearTalon =2; 
   public static final int KDriveLeftRearTalon = 8; 
 
   public static final int KShifterSolenoid1 = 1;
@@ -53,6 +54,10 @@ public class DriveSubsystem extends Subsystem {
     driveRightRear = new TalonSRX(KDriveRightRearTalon);
     driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
+    driveRightFront.setInverted(true);
+    driveRightTop.setInverted(true);
+    driveRightRear.setInverted(true);
+
     shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
     driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());
@@ -62,7 +67,7 @@ public class DriveSubsystem extends Subsystem {
 
   }
 
-  	// These six methods just return the base talons if we need to access them somewhere else
+	// These six methods just return the base talons if we need to access them somewhere else
 	public TalonSRX getBaseLeftFront() {
 		return this.driveLeftFront;
   }
@@ -94,21 +99,11 @@ public class DriveSubsystem extends Subsystem {
   }
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
-    SmartDashboard.putNumber("Left Joystick", leftSpeed);
-    SmartDashboard.putNumber("Right Joystick", rightSpeed);
-    if(OI.KDeadZone < rightSpeed || OI.KDeadZone > -rightSpeed) {
-      driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
-    }
-    else {
-      driveLeftFront.set(ControlMode.PercentOutput, 0);
-    }
+    SmartDashboard.putNumber("Left Base Input", leftSpeed);
+		SmartDashboard.putNumber("Right Base Input", rightSpeed);
     
-    if (OI.KDeadZone < leftSpeed || OI.KDeadZone > -leftSpeed) {
-      driveLeftFront.set(ControlMode.PercentOutput, leftSpeed);
-    }
-    else {
-      driveLeftFront.set(ControlMode.PercentOutput, 0);
-    }
+    driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
+    driveLeftFront.set(ControlMode.PercentOutput, leftSpeed);
   }
 
 	public void highShiftBase() {
@@ -144,4 +139,9 @@ public class DriveSubsystem extends Subsystem {
 	public void setRightMotionControl(ControlMode mode, double value) {
 		this.driveRightFront.set(mode, value);
 	}
+  
+  public void driveClearSticky() {
+    driveRightFront.clearStickyFaults(1000);
+    driveLeftFront.clearStickyFaults(1000);
+  }
 }
