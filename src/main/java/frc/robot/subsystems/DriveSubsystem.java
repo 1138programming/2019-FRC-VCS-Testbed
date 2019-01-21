@@ -56,7 +56,7 @@ public class DriveSubsystem extends Subsystem {
 
     driveRightFront.setInverted(true);
     driveRightTop.setInverted(true);
-    driveRightRear.setInverted(true);p
+    driveRightRear.setInverted(true);
 
     shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
