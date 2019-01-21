@@ -27,7 +27,8 @@ public class DriveWithJoysticks extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.DRIVE_SUBSYSTEM.tankDrive(Robot.oi.getRightAxis(), Robot.oi.getLeftAxis());
+    printf("Left axis value is %d and right axis value is %d\n", Robot.oi.getLeftAxis(), Robot.oi.getRightAxis());
+    Robot.DRIVE_SUBSYSTEM.tankDrive(Robot.oi.getLeftAxis(), Robot.oi.getRightAxis());
   }
 
   // Make this return true when this Command no longer needs to run execute()

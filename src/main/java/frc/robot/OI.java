@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.ShiftDrive;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
+import frc.robot.AutoCommand.TestMotionProfile;
+import frc.robot.MotionProfile.CrossLine;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,8 +28,8 @@ public class OI {
   // number it is.
 
   //Controller Constants 
-  public static final int KXboxArms = 0;
-  public static final int KLogitechDrive = 1;
+  public static final int KLogitechDrive = 0;
+  public static final int KXboxArms = 1;
 
   //DeadZone
   public static final double KDeadZoneAxis = 0.2; 
@@ -57,6 +59,8 @@ public class OI {
   public Joystick logitech, xbox;
 	public JoystickButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8; // Logitech Button
 	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
+
+  private static final CrossLine crossLine = new CrossLine();
 
   // //Logitech Buttons
   // public JoystickButton btn1;
@@ -105,28 +109,28 @@ public class OI {
 		btnStrt = new JoystickButton(xbox, KStartButton);
 		btnLT = new JoystickButton(xbox, KLeftTrigger);
     btnRT = new JoystickButton(xbox, KRightTrigger);
-    
+
     //Button Assigned Commands 
     btn5.whenPressed(new ShiftDrive());
     btnLT.whenPressed(new ArmUp());
     btnLB.whenPressed(new ArmDown());
-
+    //btnB.whenPressed(new TestMotionProfile(crossLine.left, crossLine.right));
   }
 
   public double getRightAxis() {
-    if(KDeadZoneAxis < logitech.getThrottle() || KDeadZoneAxis > -logitech.getThrottle()){
+    if(KDeadZoneAxis < Math.abs(logitech.getThrottle())) {
       return logitech.getThrottle(); 
     }
     else {
-      return 0; 
+      return 0;
     }
   }
   public double getLeftAxis() {
-    if(KDeadZoneAxis < logitech.getY() || KDeadZoneAxis > -logitech.getY()){
+    if(KDeadZoneAxis < Math.abs(logitech.getY())) {
       return logitech.getY(); 
     }
     else {
-      return 0; 
+      return 0;
     }
   }
 

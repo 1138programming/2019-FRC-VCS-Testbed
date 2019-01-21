@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import frc.robot.OI;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveWithJoysticks;
 
 //import static org.junit.Assume.assumeNoException;
@@ -25,12 +25,12 @@ public class DriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public static final int KDriveRightTopTalon = 1; 
-  public static final int KDriveLeftTopTalon = 2; 
-  public static final int KDriveRightFrontTalon = 3; 
-  public static final int KDriveLeftFrontTalon = 4; 
-  public static final int KDriveRightRearTalon = 5; 
-  public static final int KDriveLeftRearTalon = 6; 
+  public static final int KDriveRightTopTalon = 4; 
+  public static final int KDriveLeftTopTalon = 9; 
+  public static final int KDriveRightFrontTalon = 1; 
+  public static final int KDriveLeftFrontTalon = 5; 
+  public static final int KDriveRightRearTalon = 2; 
+  public static final int KDriveLeftRearTalon = 8; 
 
   public static final int KShifterSolenoid1 = 1;
   public static final int KShifterSolenoid2 = 2; 
@@ -93,7 +93,9 @@ public class DriveSubsystem extends Subsystem {
    setDefaultCommand(new DriveWithJoysticks());
   }
 
-  public void tankDrive(double rightSpeed, double leftSpeed) {
+  public void tankDrive(double leftSpeed, double rightSpeed) {
+    SmartDashboard.putNumber("Left Joystick", leftSpeed);
+    SmartDashboard.putNumber("Right Joystick", rightSpeed);
     if(OI.KDeadZone < rightSpeed || OI.KDeadZone > -rightSpeed) {
       driveRightFront.set(ControlMode.PercentOutput, rightSpeed);
     }
