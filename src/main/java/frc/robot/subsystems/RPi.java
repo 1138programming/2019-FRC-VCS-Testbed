@@ -9,51 +9,30 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.SerialPort.Port;
-
-import java.io.IOException;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 public class RPi extends Subsystem {
-	private SerialPort wire;
+	private NetworkTableEntry camEntry;
 	//private byte[] received;
 
-	public void RPi()
+	public RPi()
 	{
-		System.out.println("LED Subsystem Initializing...");
-		//received = new byte[6];
-		wire = new SerialPort(9600, Port.kOnboard); // Connect to device ID #4
-		
-		try {
-			sendMyName();
-			System.out.println("LED Subsystem Initialized!");
-		} catch (IOException e) {
-			System.out.println("LED Subsystem Failed!");
-			System.out.println(e);
-		}
+		NetworkTableInstance inst = NetworkTableInstance.getDefault();
+		NetworkTable table = inst.getTable("VisionInfo");
+		camEntry = table.getEntry("CamInfo");
 	}
 
-	public void sendMyName() throws IOException {
-		// Turn the mode into a byte to send (from the enum declaration)
-		byte[] toSend = new byte[6];
-		toSend[0] = 'e';
-		toSend[1] = 'd';
-		toSend[2] = 'w';
-		toSend[3] = 'a';
-		toSend[4] = 'r';
-		toSend[5] = 'd';
-		
-		if (wire != null && toSend != null) {
-			// Check that we have a proper I2C connection to avoid
-			// NullPointerExceptions
-			wire.write(toSend, 6);
+	public void sendMyName() {
+		double[] arr = camEntry.getDoubleArray(new double[]{-1, -1, -1, -1, -1});
+		System.out.println("Cam info:");
+		for (double i : arr) {
+			System.out.println(i);
 		}
-		
-		// Receive a response to check for an error
-		// Wire.readOnly(received, 1);
 	}
 
 	public void initDefaultCommand()

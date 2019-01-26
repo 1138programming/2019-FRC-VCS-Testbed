@@ -51,11 +51,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    try {
-      raspi.sendMyName();
-    } catch (IOException e) {
-
-    }
+    raspi.sendMyName();
   }
 
   /**
