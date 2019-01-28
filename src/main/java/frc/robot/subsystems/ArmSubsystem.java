@@ -8,17 +8,19 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.commands.MoveArmWithJoysticks;
 import frc.robot.OI;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 //import static org.junit.Assume.assumeNoException;
 /*
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 */
 import com.ctre.phoenix.motorcontrol.StickyFaults; 
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -32,11 +34,11 @@ public class ArmSubsystem extends Subsystem {
   //ArmSpeed
   public static final double KArmSpeed = 1.0; // 100%
 
-  private Spark armTalon;
+  private TalonSRX armTalon;
 
   public ArmSubsystem()
   {
-    armTalon = new Spark(KArmTalon);
+    armTalon = new TalonSRX(KArmTalon);
   }
 
   @Override
@@ -46,14 +48,10 @@ public class ArmSubsystem extends Subsystem {
   }
 
   public void move(double speed) {
-    armTalon.set(speed);
+    armTalon.set(ControlMode.PercentOutput, speed);
   }
   public void moveWithJoysticks(double speed) {
-    if(OI.KDeadZone < speed || OI.KDeadZone > -speed) {
-      armTalon.set(speed);
-    }
-    else {
-      armTalon.set(0);
-    }
+    armTalon.set(ControlMode.PercentOutput, speed);
+    SmartDashboard.putNumber("XBOX AXIS", Robot.oi.getXboxAxis());
   }
 }

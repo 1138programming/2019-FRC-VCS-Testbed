@@ -9,7 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.commands.ShiftDrive;
 import frc.robot.commands.Diagnostic;
 import frc.robot.commands.ArmUp;
@@ -55,14 +56,15 @@ public class OI {
 	public static final int KLeftTrigger = 9;
   public static final int KRightTrigger = 10;
 
-  public Joystick logitech, xbox;
+  public Joystick logitech;
+  public XboxController xbox;
 	public JoystickButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8; // Logitech Button
 	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
 
   public OI(){
     //Controllers 
     logitech = new Joystick(KLogitechDrive);
-    xbox = new Joystick(KXboxArms);
+    xbox = new XboxController(KXboxArms);
 
     //Logitech Buttons
 		btn1 = new JoystickButton(logitech, KButton1);
@@ -102,8 +104,8 @@ public class OI {
     }
   }
   public double getLeftAxis() {
-    if(logitech.getY() > KDeadZoneAxis || logitech.getY() < -KDeadZoneAxis){
-      return logitech.getY(); 
+    if(xbox.getY(Hand.kLeft) > KDeadZoneAxis || xbox.getY(Hand.kLeft) < -KDeadZoneAxis) {
+      return xbox.getY(Hand.kLeft); 
     }
     else {
       return 0; 
@@ -111,8 +113,8 @@ public class OI {
   }
 
   public double getXboxAxis() {
-    if(xbox.getThrottle() > KDeadZoneAxis || xbox.getThrottle() < -KDeadZoneAxis){
-      return xbox.getY(); 
+    if(xbox.getY(Hand.kRight) > KDeadZoneAxis || xbox.getY(Hand.kRight) < -KDeadZoneAxis) {
+      return xbox.getY(Hand.kRight); 
     }
     else {
       return 0; 
