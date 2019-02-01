@@ -16,7 +16,13 @@ import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
 
 import frc.robot.MotionProfile.CrossLine;
+import frc.robot.MotionProfile.Middle2Right;
+import frc.robot.MotionProfile.LeftProfiles;
+import frc.robot.MotionProfile.RightProfiles;
 import frc.robot.AutoCommand.TestMotionProfile;
+
+import frc.robot.MotionProfile.Ways;
+import frc.robot.AutoCommand.TrajectoryCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,6 +69,9 @@ public class OI {
 	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
 
   private static final CrossLine crossLine = new CrossLine();
+  private static final Middle2Right middle2Right = new Middle2Right();
+  private static final LeftProfiles leftProfiles = new LeftProfiles();
+  private static final RightProfiles rightProfiles = new RightProfiles();
 
   public OI(){
     //Controllers 
@@ -96,6 +105,9 @@ public class OI {
     btnLT.whenPressed(new ArmUp());
     btnLB.whenPressed(new ArmDown());
     //btnB.whenPressed(new TestMotionProfile(crossLine.left, crossLine.right));
+    //btnB.whenPressed(new TestMotionProfile(middle2Right.left_Part1, middle2Right.right_Part1));
+    //btnB.whenPressed(new TestMotionProfile(leftProfiles.U_Turn, rightProfiles.U_Turn));
+    btnB.whenPressed(new TrajectoryCommand(Ways.CROSS_LINE, 8, 5, 70, 0.05, 0.635));
   }
 
   public double getRightAxis() {
