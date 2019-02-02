@@ -55,9 +55,9 @@ public class DriveSubsystem extends Subsystem {
     driveRightRear = new TalonSRX(KDriveRightRearTalon);
     driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
-    driveRightFront.setInverted(true);
-    driveRightTop.setInverted(true);
-    driveRightRear.setInverted(true);
+    driveLeftFront.setInverted(true);
+    driveLeftTop.setInverted(true);
+    driveLeftRear.setInverted(true);
 
     shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 

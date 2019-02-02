@@ -23,7 +23,7 @@ public class TrajectoryCommand extends Command
 {
 	private TrajectoryExecutor trajectoryExecutor;
 	private Trajectory leftTrajectory, rightTrajectory;
-	private double kP = 0.05, kD = 0.1, kI = 0;
+	private double kP = 0.05, kI = 0, kD = 0.1;
 	public TrajectoryCommand(Waypoint[] points, double maxVel, double maxAccel, double maxJerk, double dt, double width)
 	{
 		requires(Robot.DRIVE_SUBSYSTEM);
@@ -45,12 +45,12 @@ public class TrajectoryCommand extends Command
 		Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().config_kP(0, kP, Constants.kTimeoutMs);
         Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().config_kI(0, kI, Constants.kTimeoutMs);
 		Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().config_kD(0, kD, Constants.kTimeoutMs);
-        Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().config_kF(0, 0.1003039514, Constants.kTimeoutMs);
+        Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().config_kF(0, 2.753552972, Constants.kTimeoutMs);
 
 		Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kP(0, kP, Constants.kTimeoutMs);
         Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kI(0, kI, Constants.kTimeoutMs);
         Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kD(0, kD, Constants.kTimeoutMs);
-        Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kF(0, 0.104398408, Constants.kTimeoutMs);
+        Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kF(0, 2.756520802, Constants.kTimeoutMs);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

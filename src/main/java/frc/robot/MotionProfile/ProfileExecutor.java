@@ -78,7 +78,7 @@ public class ProfileExecutor {
 	 * every 10ms.
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
-	    public void run() {  _talon.processMotionProfileBuffer();    }
+	    public void run() {  _talon.processMotionProfileBuffer();     }
 	}
 	Notifier _notifier = new Notifier(new PeriodicRunnable());
 	
@@ -193,7 +193,7 @@ public class ProfileExecutor {
 						 * points
 						 */
 					/* do we have a minimum numberof points in Talon */
-					if (_status.btmBufferCnt > kMinPointsInTalon) {
+					if (_status.btmBufferCnt >= kMinPointsInTalon) {
 						/* start (once) the motion profile */
 						_setValue = SetValueMotionProfile.Enable;
 						/* MP will start once the control frame gets scheduled */

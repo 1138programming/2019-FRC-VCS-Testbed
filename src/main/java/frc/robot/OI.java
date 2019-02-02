@@ -14,6 +14,7 @@ import frc.robot.commands.ShiftDrive;
 import frc.robot.commands.Diagnostic;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
+import frc.robot.commands.DriveBaseForward;
 
 import frc.robot.MotionProfile.CrossLine;
 import frc.robot.MotionProfile.Middle2Right;
@@ -104,7 +105,8 @@ public class OI {
     btn2.whenPressed(new Diagnostic());
     btnLT.whenPressed(new ArmUp());
     btnLB.whenPressed(new ArmDown());
-    //btnB.whenPressed(new TestMotionProfile(crossLine.left, crossLine.right));
+    btnX.whenPressed(new DriveBaseForward());
+    //btnB.whenPressed(new TestMotionrofile(crossLine.left, crossLine.right));
     //btnB.whenPressed(new TestMotionProfile(middle2Right.left_Part1, middle2Right.right_Part1));
     //btnB.whenPressed(new TestMotionProfile(leftProfiles.U_Turn, rightProfiles.U_Turn));
     btnB.whenPressed(new TrajectoryCommand(Ways.CROSS_LINE, 8, 5, 70, 0.05, 0.635));
@@ -112,7 +114,7 @@ public class OI {
 
   public double getRightAxis() {
     if(logitech.getThrottle() > KDeadZoneAxis || logitech.getThrottle() < -KDeadZoneAxis){
-      return logitech.getThrottle(); 
+      return -logitech.getThrottle(); 
     }
     else {
       return 0; 
@@ -120,7 +122,7 @@ public class OI {
   }
   public double getLeftAxis() {
     if(logitech.getY() > KDeadZoneAxis || logitech.getY() < -KDeadZoneAxis){
-      return logitech.getY(); 
+      return -logitech.getY(); 
     }
     else {
       return 0; 

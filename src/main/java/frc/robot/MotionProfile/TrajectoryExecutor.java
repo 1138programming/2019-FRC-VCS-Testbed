@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Trajectory;
-
 import com.ctre.phoenix.motion.*;
 import com.ctre.phoenix.motion.TrajectoryPoint;
 
@@ -218,7 +217,7 @@ public class TrajectoryExecutor {
 						 * points
 						 */
 					/* do we have a minimum numberof points in Talon */
-					if (leftProfileStatus.btmBufferCnt > kMinPointsInTalon && rightProfileStatus.btmBufferCnt > kMinPointsInTalon) {
+					if (leftProfileStatus.btmBufferCnt >= kMinPointsInTalon && rightProfileStatus.btmBufferCnt >= kMinPointsInTalon) {
 						/* start (once) the motion profile */
 						leftSetValue = SetValueMotionProfile.Enable;
 						rightSetValue = SetValueMotionProfile.Enable;
@@ -317,7 +316,7 @@ public class TrajectoryExecutor {
 
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
-		/* since this example only has one talon, just update that one */
+		/* since this example has two talons, update both */
 		startFilling(this.leftTrajectory, this.rightTrajectory, this.maxPoint);
 	}
 

@@ -6,9 +6,12 @@ public class Constants {
 	/**
 	 * How many sensor units per rotation. Using CTRE Magnetic Encoder.
 	 * 
+	 * The mag encoder counts 4096 units per rotation
+	 * The gear ratio is 4.17
+	 * 
 	 * @link https://github.com/CrossTheRoadElec/Phoenix-Documentation#what-are-the-units-of-my-sensor
 	 */
-	public static final double kSensorUnitsPerRotation = 18000;
+	public static final double kSensorUnitsPerRotation = 17080.32;
 
 	/**
 	 * Which PID slot to pull gains from. Starting 2018, you can choose from
