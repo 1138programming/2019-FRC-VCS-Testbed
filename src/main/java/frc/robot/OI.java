@@ -15,6 +15,7 @@ import frc.robot.commands.Diagnostic;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.DriveBaseForward;
+import frc.robot.commands.EncoderTest;
 
 import frc.robot.MotionProfile.CrossLine;
 import frc.robot.MotionProfile.Middle2Right;
@@ -106,6 +107,7 @@ public class OI {
     btnLT.whenPressed(new ArmUp());
     btnLB.whenPressed(new ArmDown());
     btnX.whenPressed(new DriveBaseForward());
+    btnA.whenPressed(new EncoderTest());
     //btnB.whenPressed(new TestMotionrofile(crossLine.left, crossLine.right));
     //btnB.whenPressed(new TestMotionProfile(middle2Right.left_Part1, middle2Right.right_Part1));
     //btnB.whenPressed(new TestMotionProfile(leftProfiles.U_Turn, rightProfiles.U_Turn));

@@ -59,6 +59,8 @@ public class DriveSubsystem extends Subsystem {
     driveLeftTop.setInverted(true);
     driveLeftRear.setInverted(true);
 
+    driveLeftFront.setSensorPhase(true);
+
     shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
     driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());

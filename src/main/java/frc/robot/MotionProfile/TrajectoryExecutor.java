@@ -273,7 +273,7 @@ public class TrajectoryExecutor {
 			_vel = rightTalon.getActiveTrajectoryVelocity();
 
 			/* printfs and/or logging */
-			// Instrumentation.process(_status, _pos, _vel, _heading);
+			Instrumentation.process(leftProfileStatus, _pos, _vel, _heading);
 		}
 	}
 	/**
