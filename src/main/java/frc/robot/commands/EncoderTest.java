@@ -31,14 +31,17 @@ public class EncoderTest extends Command {
   @Override
   protected void execute() {
     Robot.DRIVE_SUBSYSTEM.tankDrive(0.1, 0.1);
-    SmartDashboard.putNumber("Left quadrature position:", Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().getSensorCollection().getQuadraturePosition());
-    SmartDashboard.putNumber("Right quadrature position:", Robot.DRIVE_SUBSYSTEM.getBaseRightFront().getSensorCollection().getQuadraturePosition());
+    //SmartDashboard.putNumber("Left quadrature position:", Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().getSensorCollection().getQuadraturePosition());
+    //SmartDashboard.putNumber("Right quadrature position:", Robot.DRIVE_SUBSYSTEM.getBaseRightFront().getSensorCollection().getQuadraturePosition());
+    SmartDashboard.putNumber("Left quadrature position:", Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().getSelectedSensorPosition());
+    SmartDashboard.putNumber("Right quadrature position:", Robot.DRIVE_SUBSYSTEM.getBaseRightFront().getSelectedSensorPosition());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().getSensorCollection().getQuadraturePosition() <= -4096 * 4.17;
+    //return Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().getSensorCollection().getQuadraturePosition() <= -4096 * 4.17;
+    return Robot.DRIVE_SUBSYSTEM.getBaseLeftFront().getSelectedSensorPosition() >= 4096 * 4.17;
   }
 
   // Called once after isFinished returns true

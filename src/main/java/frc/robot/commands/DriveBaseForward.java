@@ -27,7 +27,7 @@ public class DriveBaseForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.DRIVE_SUBSYSTEM.tankDrive(1, 1);
+    Robot.DRIVE_SUBSYSTEM.tankDrive(0.3, 0.3);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,6 +40,7 @@ public class DriveBaseForward extends Command {
   @Override
   protected void end() {
     Robot.DRIVE_SUBSYSTEM.tankDrive(0, 0);
+    Robot.DRIVE_SUBSYSTEM.resetEncoders();
   }
 
   // Called when another command which requires one or more of the same

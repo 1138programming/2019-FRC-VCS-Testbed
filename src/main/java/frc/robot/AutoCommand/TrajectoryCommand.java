@@ -51,7 +51,9 @@ public class TrajectoryCommand extends Command
 		Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kP(0, kP, Constants.kTimeoutMs);
         Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kI(0, kI, Constants.kTimeoutMs);
         Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kD(0, kD, Constants.kTimeoutMs);
-        Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kF(0, 0.104398408, Constants.kTimeoutMs);
+		Robot.DRIVE_SUBSYSTEM.getBaseRightFront().config_kF(0, 0.104398408, Constants.kTimeoutMs);
+		
+		Robot.DRIVE_SUBSYSTEM.resetEncoders();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -75,8 +77,8 @@ public class TrajectoryCommand extends Command
 	@Override
 	protected boolean isFinished()
 	{
-		return trajectoryExecutor.getLeftValue() == SetValueMotionProfile.Hold ||
-			trajectoryExecutor.getRightValue() == SetValueMotionProfile.Hold;
+		//return false;
+		return trajectoryExecutor.getLeftValue() == SetValueMotionProfile.Hold || trajectoryExecutor.getRightValue() == SetValueMotionProfile.Hold;
 	}
 
 	// Called once after isFinished returns true

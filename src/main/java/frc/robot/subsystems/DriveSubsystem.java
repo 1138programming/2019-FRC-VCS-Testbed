@@ -55,19 +55,18 @@ public class DriveSubsystem extends Subsystem {
     driveRightRear = new TalonSRX(KDriveRightRearTalon);
     driveLeftRear = new TalonSRX(KDriveLeftRearTalon);
 
+    driveLeftFront.setSensorPhase(false);
+
     driveLeftFront.setInverted(true);
     driveLeftTop.setInverted(true);
     driveLeftRear.setInverted(true);
-
-    driveLeftFront.setSensorPhase(true);
-
-    shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
 
     driveRightTop.set(ControlMode.Follower, driveRightFront.getDeviceID());
     driveRightRear.set(ControlMode.Follower, driveRightFront.getDeviceID());
     driveLeftTop.set(ControlMode.Follower, driveLeftFront.getDeviceID());
     driveLeftRear.set(ControlMode.Follower, driveLeftFront.getDeviceID());
 
+    shifterSolenoid = new DoubleSolenoid(KShifterSolenoid1, KShifterSolenoid2);
   }
 
 	// These six methods just return the base talons if we need to access them somewhere else
@@ -120,8 +119,7 @@ public class DriveSubsystem extends Subsystem {
 	public void toggleShift() {
 		if (shifterSolenoid.get() == DoubleSolenoid.Value.kForward) {
 			highShiftBase();
-		}
-		else {
+		} else {
 			lowShiftBase();
 		}
   }

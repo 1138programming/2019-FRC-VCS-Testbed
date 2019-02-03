@@ -248,6 +248,9 @@ public class TrajectoryExecutor {
 						leftSetValue = SetValueMotionProfile.Hold;
 						_state = 0;
 						_loopTimeout = -1;
+
+						// Stop processing the motion profile buffer
+						_notifier.stop();
 					}
 					if (rightProfileStatus.activePointValid && rightProfileStatus.isLast) {
 						/*
@@ -257,6 +260,9 @@ public class TrajectoryExecutor {
 						rightSetValue = SetValueMotionProfile.Hold;
 						_state = 0;
 						_loopTimeout = -1;
+
+						// Stop processing the motion profile buffer
+						_notifier.stop();
 					}
 					break;
 			}
@@ -389,7 +395,7 @@ public class TrajectoryExecutor {
 			}
 			leftPoint.isLastPoint = false;
 			rightPoint.isLastPoint = false;
-			if ((i + 1) == totalCnt) {
+			if ((i + 1) >= totalCnt) {
 				leftPoint.isLastPoint = true; /* set this to true on the last point  */
 				rightPoint.isLastPoint = true; /* set this to true on the last point  */
 			}
