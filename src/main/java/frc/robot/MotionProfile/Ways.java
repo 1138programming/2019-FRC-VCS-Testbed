@@ -6,7 +6,7 @@ import jaci.pathfinder.Waypoint;
 public class Ways {
     public static final Waypoint[] CROSS_LINE = new Waypoint[] {
         new Waypoint(0/12.0 ,54/12.0 ,Pathfinder.d2r(0)),
-        new Waypoint(0/12.0 ,120/12.0 ,Pathfinder.d2r(0)),
+        new Waypoint(120/12.0 ,54/12.0 ,Pathfinder.d2r(0)),
     };
 
     public static final Waypoint[] RIGHT_NEAR_SWITCH = new Waypoint[]{
@@ -66,14 +66,5 @@ public class Ways {
         new Waypoint(19.166666666666668 ,10.5 ,Pathfinder.d2r(90.0)),
         new Waypoint(19.166666666666668 ,15.833333333333334 ,Pathfinder.d2r(90.0)),
         new Waypoint(23.583333333333332 ,20.5 ,Pathfinder.d2r(0))
-    };
-
-    public static final Waypoint[] TEST_PROFILE_1 = new Waypoint[]{
-        new Waypoint(0, 4.5, Pathfinder.d2r(0)),
-        new Waypoint(10.0, 4.5, Pathfinder.d2r(0)),
-        new Waypoint(12.5, 9.0, Pathfinder.d2r(90)),
-        new Waypoint(9.5, 12.0, Pathfinder.d2r(180)),
-        new Waypoint(4.0, 4.5, Pathfinder.d2r(0)),
-        new Waypoint(0.5, 4.5, Pathfinder.d2r(0)),
     };
 }

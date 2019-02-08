@@ -9,8 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import frc.robot.commands.ShiftDrive;
 import frc.robot.commands.Diagnostic;
@@ -68,8 +66,7 @@ public class OI {
 	public static final int KLeftTrigger = 9;
   public static final int KRightTrigger = 10;
 
-  public Joystick logitech;
-  public XboxController xbox;
+  public Joystick logitech, xbox;
 	public JoystickButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8; // Logitech Button
 	public JoystickButton btnA, btnB, btnX, btnY, btnLB, btnRB, btnStrt, btnLT, btnRT; // Xbox Buttons
 
@@ -81,7 +78,7 @@ public class OI {
   public OI(){
     //Controllers 
     logitech = new Joystick(KLogitechDrive);
-    xbox = new XboxController(KXboxArms);
+    xbox = new Joystick(KXboxArms);
 
     //Logitech Buttons
 		btn1 = new JoystickButton(logitech, KButton1);
@@ -114,7 +111,7 @@ public class OI {
     //btnB.whenPressed(new TestMotionrofile(crossLine.left, crossLine.right));
     //btnB.whenPressed(new TestMotionProfile(middle2Right.left_Part1, middle2Right.right_Part1));
     //btnB.whenPressed(new TestMotionProfile(leftProfiles.U_Turn, rightProfiles.U_Turn));
-    btnB.whenPressed(new TrajectoryCommand(Ways.CROSS_LINE, 10, 5, 70, 0.05, 2.2083));
+    btnB.whenPressed(new TrajectoryCommand(Ways.CROSS_LINE, 8, 5, 70, 0.05, 0.635));
   }
 
   public double getRightAxis() {
@@ -135,32 +132,13 @@ public class OI {
   }
 
   public double getXboxAxis() {
-    if(xbox.getY(Hand.kRight) > KDeadZoneAxis || xbox.getY(Hand.kRight) < -KDeadZoneAxis){
-      return xbox.getY(Hand.kRight); 
+    if(xbox.getThrottle() > KDeadZoneAxis || xbox.getThrottle() < -KDeadZoneAxis){
+      return xbox.getY(); 
     }
     else {
       return 0; 
     }
   }
-  
-  public double getXboxRightAxis() {
-    if(xbox.getY(Hand.kRight) > KDeadZoneAxis || xbox.getY(Hand.kRight) < -KDeadZoneAxis){
-      return -xbox.getY(Hand.kRight); 
-    }
-    else {
-      return 0; 
-    }
-  }
-
-  public double getXboxLeftAxis() {
-    if(xbox.getY(Hand.kLeft) > KDeadZoneAxis || xbox.getY(Hand.kLeft) < -KDeadZoneAxis){
-      return -xbox.getY(Hand.kLeft); 
-    }
-    else {
-      return 0; 
-    }
-  }
-
   //Joystick stick = new Joystick(port);
   //Button button = new JoystickButton(stick, buttonNumber);
 
