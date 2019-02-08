@@ -111,7 +111,7 @@ public class OI {
     //btnB.whenPressed(new TestMotionrofile(crossLine.left, crossLine.right));
     //btnB.whenPressed(new TestMotionProfile(middle2Right.left_Part1, middle2Right.right_Part1));
     //btnB.whenPressed(new TestMotionProfile(leftProfiles.U_Turn, rightProfiles.U_Turn));
-    btnB.whenPressed(new TrajectoryCommand(Ways.CROSS_LINE, 8, 5, 70, 0.05, 0.635));
+    btnB.whenPressed(new TrajectoryCommand(Ways.TEST_PROFILE_2, 20, 5, 70, 0.05, 2.2083));
   }
 
   public double getRightAxis() {
